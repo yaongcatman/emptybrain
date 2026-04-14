@@ -49,7 +49,20 @@ For more examples and ideas, visit:
   ### 운영 명령 실행
 ##
   - **명령어**: docker images
-  - **출 력**: zsh: no such file or directory: /docker
+  - **출 력**: REPOSITORY    TAG       IMAGE ID       CREATED          SIZE
+angkom-cat    2.0       469aa3b1024f   35 minutes ago   61.6MB
+angkom-cat    1.0       0ace6e106e81   2 hours ago      61.6MB
+nginx         alpine    cb3fe4a86f76   7 days ago       61.6MB
+hello-world   latest    eb84fdc6f2a3   3 weeks ago      5.2kB
+ang.com@hwang-angkom-ui-MacBookPro cat-study % \
+> docker images
+REPOSITORY    TAG       IMAGE ID       CREATED          SIZE
+angkom-cat    2.0       469aa3b1024f   36 minutes ago   61.6MB
+angkom-cat    1.0       0ace6e106e81   2 hours ago      61.6MB
+nginx         alpine    cb3fe4a86f76   7 days ago       61.6MB
+hello-world   latest    eb84fdc6f2a3   3 weeks ago      5.2kB
+ang.com@hwang-angkom-ui-MacBookPro cat-study % 
+
 ##
   - **명령어**: docker ps -a
   - **출 력**: CONTAINER ID   IMAGE         COMMAND    CREATED              STATUS                          PORTS     NAMES
@@ -156,6 +169,26 @@ EXPOSE 80%
 2026/04/14 17:44:42 [notice] 1#1: start worker process 39
 2026/04/14 17:44:42 [notice] 1#1: start worker process 40
 192.168.215.1 - - [14/Apr/2026:17:45:08 +0000] "GET / HTTP/1.1" 200 891 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36" "-"
+
+##
+###바운트마운드 / 볼륨
+##
+-**명령어**: docker run -d -p 8081:80 -v $(pwd)/app:/usr/share/nginx/html --name bind-test nginx:alpine
+-**처  리**: nginx:alpine
+Unable to find image 'nginx:alpine' locally
+alpine: Pulling from library/nginx
+d8ad8cd72600: Already exists 
+d00d1920ebfb: Already exists 
+e951149bd236: Already exists 
+bd72d396bf04: Already exists 
+b35c5a7eacad: Already exists 
+31f48cb0d775: Already exists 
+c2b302928bf4: Already exists 
+97577b80aa16: Already exists 
+Digest: sha256:582c496ccf79d8aa6f8203a79d32aaf7ffd8b13362c60a701a2f9ac64886c93d
+Status: Downloaded newer image for nginx:alpine
+707c15a2973a32ae7b99aeb3694c353ba55a7a6e2ea8e7cde839eb321997e56c
+##
 
 
 
