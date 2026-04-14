@@ -214,6 +214,12 @@ Status: Downloaded newer image for nginx:alpine
 ##
 -**데이터 영속성**: docker run --rm -v cat-snack-storage:/data alpine cat /data/list.txt
 -**확인**: 고양이 간식: 츄르 100개
+##
+## 4.연동
+##
+### 깃허브
+-**연동**: git config --list
+
 
 
 
