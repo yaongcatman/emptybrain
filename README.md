@@ -136,6 +136,7 @@ EXPOSE 80%
 <img width="882" height="528" alt="스크린샷 2026-04-15 오전 2 49 39" src="https://github.com/user-attachments/assets/0424b78a-a3ea-45c1-93fc-d1e982c6c0f9" />
 ##
 -**서버접속**: docker logs angkom-server
+
 -**처  리**: docker-entrypoint.sh: Configuration complete; ready for start up
 2026/04/14 17:44:42 [notice] 1#1: using the "epoll" event method
 2026/04/14 17:44:42 [notice] 1#1: nginx/1.29.8
