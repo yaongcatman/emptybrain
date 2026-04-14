@@ -80,6 +80,7 @@ For more examples and ideas, visit:
   - **명령어**: docker stats --no-stream
   - **출 력**: CONTAINER ID   NAME      CPU %     MEM USAGE / LIMIT   MEM %     NET I/O   BLOCK I/O   PIDS
 ##2. Dockerfile
+
  - **HTML**:
 cat <<EOF > app/index.html
 <!DOCTYPE html>
@@ -100,6 +101,7 @@ cat <<EOF > app/index.html
 </body>
 </html>
 EOF
+
 ##
 ### 실행
  - **명령어**: docker build -t angkom-cat:2.0 .
