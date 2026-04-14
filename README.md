@@ -204,6 +204,17 @@ Status: Downloaded newer image for nginx:alpine
 <img width="876" height="526" alt="스크린샷 2026-04-15 오전 3 33 24" src="https://github.com/user-attachments/assets/08605886-771a-4895-8f2c-18774ee305dd" />
 ##
 ### 볼륨
+-**창고**: docker volume create cat-snack-storage
+-**답변**: cat-snack-storage
+##
+-**메모**: docker run --name writer-test -v cat-snack-storage:/data alpine sh -c "echo ' 고양이 간식: 츄르 100개' > /data/list.txt"
+##
+-**삭제**: docker rm -f writer-test
+-**발생**: writer-test
+##
+-**데이터 영속성**: docker run --rm -v cat-snack-storage:/data alpine cat /data/list.txt
+-**확인**: 고양이 간식: 츄르 100개
+
 
 
 
