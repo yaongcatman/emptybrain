@@ -171,7 +171,9 @@ EXPOSE 80%
 192.168.215.1 - - [14/Apr/2026:17:45:08 +0000] "GET / HTTP/1.1" 200 891 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36" "-"
 
 ##
+
 ###바운트마운드 / 볼륨
+
 ##
 -**명령어**: docker run -d -p 8081:80 -v $(pwd)/app:/usr/share/nginx/html --name bind-test nginx:alpine
 -**처  리**: nginx:alpine
