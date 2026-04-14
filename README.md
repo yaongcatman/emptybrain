@@ -176,6 +176,7 @@ EXPOSE 80%
 
 ##
 -**명령어**: docker run -d -p 8081:80 -v $(pwd)/app:/usr/share/nginx/html --name bind-test nginx:alpine
+
 -**처  리**: nginx:alpine
 Unable to find image 'nginx:alpine' locally
 alpine: Pulling from library/nginx
@@ -191,6 +192,15 @@ Digest: sha256:582c496ccf79d8aa6f8203a79d32aaf7ffd8b13362c60a701a2f9ac64886c93d
 Status: Downloaded newer image for nginx:alpine
 707c15a2973a32ae7b99aeb3694c353ba55a7a6e2ea8e7cde839eb321997e56c
 ##
+-**수정**: sed -i '' 's/우울과 야옹은 한끗차이/원래 코딩 시작하면 성격이 나빠지나요? 그래도 감사함미다.../g' ./app/index.html
+-**확인**: curl http://localhost:8081 | grep "감사함미다"
+ % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   941  100   941    0     0  37709      0 --:--:-- --:--:-- --:--:-- 39208
+            "원래 코딩 시작하면 성격이 나빠지나요? 그래도 감사함미다..., <span style="color: #ff1493; font-weight: bold; font-size: 30px;">야옹!</span>"
+-**결과**: http://localhost:8081
+<img width="876" height="526" alt="스크린샷 2026-04-15 오전 3 33 24" src="https://github.com/user-attachments/assets/08605886-771a-4895-8f2c-18774ee305dd" />
+
 
 
 
