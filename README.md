@@ -172,7 +172,7 @@ EXPOSE 80%
 
 ##
 
-###바운트마운드 / 볼륨
+### 바운트마운드 / 볼륨
 
 ##
 -**명령어**: docker run -d -p 8081:80 -v $(pwd)/app:/usr/share/nginx/html --name bind-test nginx:alpine
