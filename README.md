@@ -219,6 +219,8 @@ Status: Downloaded newer image for nginx:alpine
 ### 깃허브
 -**주소**: https://github.com/yaongcatman/emptybrain
 
+vscode 설치해야하는 줄 모르고 vscode없이 맥북터미널로만 했습니다. ㅜㅜ
+
 
 
 
