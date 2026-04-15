@@ -159,7 +159,7 @@ For more examples and ideas, visit:
 1. 이미지
 ```bash
 *이미지 다운로드/목록확인: docker images
-  - **출 력**: REPOSITORY    TAG       IMAGE ID       CREATED          SIZE
+REPOSITORY    TAG       IMAGE ID       CREATED          SIZE
 angkom-cat    2.0       469aa3b1024f   35 minutes ago   61.6MB
 angkom-cat    1.0       0ace6e106e81   2 hours ago      61.6MB
 nginx         alpine    cb3fe4a86f76   7 days ago       61.6MB
@@ -188,7 +188,7 @@ Exited (0) -> 에러 없이 마무리하고 종료.
 ##
 3. 도커 모든 텍스트 출력 기록
 ```bash
-hello-test 도커기록: docker logs hello-test
+*hello-test 도커기록: docker logs hello-test
 
 Hello from Docker!
 This message shows that your installation appears to be working correctly.
@@ -329,8 +329,9 @@ html파일을 웹 화면으로 출력하기 위해서는 웹 서버 프로그램
 
 ##
 ## 2. 빌드 / 실행
+1. 빌드
 ```bash
-건축 : docker build -t angkom-cat:2.0 .
+*건축 : docker build -t angkom-cat:2.0 .
  [+] Building 1.1s (7/7) FINISHED                                docker:orbstack
  => [internal] load build definition from Dockerfile                       0.0s
  => => transferring dockerfile: 119B                                       0.0s
@@ -345,24 +346,39 @@ html파일을 웹 화면으로 출력하기 위해서는 웹 서버 프로그램
  => => exporting layers                                                    0.0s
  => => writing image sha256:469aa3b1024f47c8971c4d77485905728878a882d37af  0.0s
  => => naming to docker.io/library/angkom-cat:2.0                          0.0s
+```
+angkom-cat:2.0 커스텀 이미지 생성 완료.  
+캐시기능을 사용해 1.1초로 건축 완료.
 ##
- - **서버실행**: docker run -d -p 8080:80 --name angkom-server angkom-cat:2.0
-- **출 력**: 15fa0dc8e606025ec7e264f92109e72d96195b0ac2c2b1c6a7284cbdf982bef7
-##
- - **결과명령어**: docker ps 
- - **결과**: CONTAINER ID   IMAGE            COMMAND                   CREATED         STATUS         PORTS                                     NAMES
+2. 실행 / 확인
+```bash
+*서버실행 (백그라운드/포트 포워딩):  docker run -d -p 8080:80 --name angkom-server angkom-cat:2.0
+15fa0dc8e606025ec7e264f92109e72d96195b0ac2c2b1c6a7284cbdf982bef7
+
+*실행상태확인*: docker ps 
+CONTAINER ID   IMAGE            COMMAND                   CREATED         STATUS         PORTS                                     NAMES
 15fa0dc8e606   angkom-cat:2.0   "/docker-entrypoint.…"   5 minutes ago   Up 5 minutes   0.0.0.0:8080->80/tcp, [::]:8080->80/tcp   angkom-server
+```
+서버를 컨테이너가 실행되어도 터미널이 멈추지 않고 다음 명령어를 입력할 수 있는 상태에서 내 컴퓨터와 컨테이너의 문을 연결 시켜 실행.  
+컨테이너 고유 ID 생성.  
+8080번 포트와 컨테이너 안 80번 포트를 연결. 8080번 주소 (비밀번호) 입력시 컨테이너 안 80번 문으로 입장 가능.
 ##
-- **cat Dockerfile**: FROM nginx:alpine
+3. cat Dockerfile 설계도 
+```bash
+설계도: cat Dockerfile
+FROM nginx:alpine
 COPY ./app/index.html /usr/share/nginx/html/index.html
-EXPOSE 80%                                                                      
+EXPOSE 80
+```
+nginx 베이스에 커스텀 HTML을 얹고 80번 포트를 개방하도록 설계.                                              
 ##
--**최종결과물**: http://localhost:8080/
+4.최종결과물: http://localhost:8080/
 <img width="882" height="528" alt="스크린샷 2026-04-15 오전 2 49 39" src="https://github.com/user-attachments/assets/0424b78a-a3ea-45c1-93fc-d1e982c6c0f9" />
 ##
--**서버접속**: docker logs angkom-server
-
--**처  리**: docker-entrypoint.sh: Configuration complete; ready for start up
+5. 포트 매핑 접속
+```bash
+*서버접속확인: docker logs angkom-server
+docker-entrypoint.sh: Configuration complete; ready for start up
 2026/04/14 17:44:42 [notice] 1#1: using the "epoll" event method
 2026/04/14 17:44:42 [notice] 1#1: nginx/1.29.8
 2026/04/14 17:44:42 [notice] 1#1: built by gcc 15.2.0 (Alpine 15.2.0) 
@@ -381,15 +397,17 @@ EXPOSE 80%
 2026/04/14 17:44:42 [notice] 1#1: start worker process 39
 2026/04/14 17:44:42 [notice] 1#1: start worker process 40
 192.168.215.1 - - [14/Apr/2026:17:45:08 +0000] "GET / HTTP/1.1" 200 891 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36" "-"
-
+```
+웹서버가 오류없이 정상적으로 시작 -> 외부에서 서버의 대문으로 접속 요청 ->  
+서버가 성공코드로 응답 "GET / HTTP/1.1" 200  -> 맥북 크롬 브라우저를 통해 페이지 출력 성공
 ##
+# 바인드마운트 / 볼륨
+## 1. 바인드마운트
+1. 변경
+```bash
+*호스트변경: docker run -d -p 8081:80 -v $(pwd)/app:/usr/share/nginx/html --name bind-test nginx:alpine
 
-## 3.바운트마운드 / 볼륨
-
-### 바운트마운드
--**명령어**: docker run -d -p 8081:80 -v $(pwd)/app:/usr/share/nginx/html --name bind-test nginx:alpine
-
--**처  리**: nginx:alpine
+nginx:alpine
 Unable to find image 'nginx:alpine' locally
 alpine: Pulling from library/nginx
 d8ad8cd72600: Already exists 
@@ -403,66 +421,92 @@ c2b302928bf4: Already exists
 Digest: sha256:582c496ccf79d8aa6f8203a79d32aaf7ffd8b13362c60a701a2f9ac64886c93d
 Status: Downloaded newer image for nginx:alpine
 707c15a2973a32ae7b99aeb3694c353ba55a7a6e2ea8e7cde839eb321997e56c
+```
+웹서버 이미지를 빌려서 bind-test 이름으로 실행 ->  
+백그라운드에서 컨테이너랑 연결 8081번 문으로 내폴더에서 컨테이너 폴더로 실시간 연결.
 ##
--**수정**: sed -i '' 's/우울과 야옹은 한끗차이/원래 코딩 시작하면 성격이 나빠지나요? 그래도 감사함미다.../g' ./app/index.html
+2. 수정
+```bash
+*멘트수정: sed -i '' 's/우울과 야옹은 한끗차이/원래 코딩 시작하면 성격이 나빠지나요? 그래도 감사함미다.../g' ./app/index.html
 
--**확인**: curl http://localhost:8081 | grep "감사함미다"
+curl http://localhost:8081 | grep "감사함미다"
  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
 100   941  100   941    0     0  37709      0 --:--:-- --:--:-- --:--:-- 39208
             "원래 코딩 시작하면 성격이 나빠지나요? 그래도 감사함미다..., <span style="color: #ff1493; font-weight: bold; font-size: 30px;">야옹!</span>"
-            
--**결과**: http://localhost:8081
+```
+터미널에서 수정할 내용 탐색 후 백업 파일 없이 바로 수정 및 변경 멘트로 대체  
+-> 터미널에서 웹사이트에 접속해 즉각적으로 데이터를 가져와 이미지 빌드 없이 파일 수정 후 멘트 변경
+##
+3. 결과: http://localhost:8081
 <img width="876" height="526" alt="스크린샷 2026-04-15 오전 3 33 24" src="https://github.com/user-attachments/assets/08605886-771a-4895-8f2c-18774ee305dd" />
 ##
-### 볼륨
--**창고**: docker volume create cat-snack-storage
--**답변**: cat-snack-storage
-##
--**메모**: docker run --name writer-test -v cat-snack-storage:/data alpine sh -c "echo ' 고양이 간식: 츄르 100개' > /data/list.txt"
-##
--**삭제**: docker rm -f writer-test
--**발생**: writer-test
-##
--**데이터 영속성**: docker run --rm -v cat-snack-storage:/data alpine cat /data/list.txt
--**확인**: 고양이 간식: 츄르 100개
-##
-## 4.연동
-### 깃허브
--**주소**: https://github.com/yaongcatman/emptybrain
 
-vscode 설치해야하는 줄 모르고 vscode없이 맥북터미널로만 했습니다. ㅜㅜ
+## 2. 볼륨 영속성
+```dash
+*생성: docker volume create cat-snack-storage
+cat-snack-storage
+
+*연결 : docker run --name writer-test -v cat-snack-storage:/data alpine sh -c "echo ' 고양이 간식: 츄르 100개' > /data/list.txt"
+
+*삭제: docker rm -f writer-test
+writer-test
+
+*검증: docker run --rm -v cat-snack-storage:/data alpine cat /data/list.txt
+고양이 간식: 츄르 100개
+```
+[1] 도커 전용 안전 구역에 'cat-snack-storage' 데이터 보관함 생성    
+[2] writer-test 볼륨 임시 컨테이너 실행해 볼륨 안에 메모 작성    
+[3] writer-test 컨테이너 강제삭제  
+[4] 새 컨테이너 생성해 똑같은 볼륨 연결 -> 예전 메모 그대로 활성화
+##
+
+# GIT설정 및 연동
+## 1. 깃허브
+```bash
+*사용자정보: git config --global --list
+user.name=yaongcatman
+user.email=loo_cozy@naver.com
+<img width="519" height="48" alt="Screenshot 2026-04-16 at 7 04 41 AM" src="https://github.com/user-attachments/assets/2ea75630-8d66-42e9-afd7-0cfba9c8b46a" />
+```
+https://github.com/yaongcatman/emptybrain
 
 ##
 # 과제 목표
 ##
 
-### 1. 절대경로와 상대경로
-절대경로: 파일의 정확한 전체주소. 항상 같은 곳을 가리킨다. 지정된 목적지가 있다. 절대 벗어나면 안된다. (/)
+[1] 절대경로와 상대경로
+절대경로: 파일의 정확한 전체주소. 항상 같은 곳을 가리킨다. 지정된 목적지가 있다. (/)
 상대경로: 현재 내가 있는 위치를 기준으로 한 주소이며 지정된 목적지가 있기보다는 갈 수 있는 경로(방향)을 향한다.
 
-####2. 파일권한과 숫자표기
--**권한을 부여하는 것**
+[2] 파일권한과 숫자표기
+8권한을 부여하는 것
 파일권한 : R(읽기) 4 / W(쓰기) 2/ X(실행) 1
 7(421) 모든권한
 5(41) 읽기 / 실행
 4(4) 읽기
 
-###3. 도커 커스텀 이미지 제작
--**이미지에 원하는 설정 추가**
-도커파일 생성 및 작성하여 명령어로 추가 혹은 설정
-나만의 전용 서버 환경을 만들어 똑같이 볼 수 있게 만드는 것.
+**-rwxr-xr-x (755)**
+**-rw-r--r-- (644)**
+- : 파일
+rw- (주인): 읽기 / 쓰기
+r - - (그룹): 읽기  
+r - - (나머지) : 읽기
 
-###4. 포드매핑이 필요한 이유
+[3] 도커 커스텀 이미지 제작
+웹서버 이미지를 생성 그 안에 사용자가 커스텀한 index.html를 넣고 `build` / `run`
+나만의 전용 서버 환경을 만들어 복사해 똑같이 볼 수 있게 만드는 것.
+
+[4] 포드매핑이 필요한 이유
 포드매핑은 통로(터널) 혹은 지도 같은 존재
 서버의 문이 열려있는데 연결되어있는 다리가 없이 고립되어있거나 길을 모른다면 무용지물이다.
 링크를 만들어 연결 통로를 만들어준다.
 
-###5. 영속데이터
+[5] 영속데이터
 내 방안(컨테이너)에 물건들이 누가 훔쳐가거니 망가뜨려도 문을 다시 열고 들어왔을 때 내 방안의 물건들이 그대로 유지되어 있는 것.
 새로운 방을 얻어도 이전 방이 그대로 유지 보존된다.
 
-###6. GIT과 GITHUB
+[6] GIT과 GITHUB
 깃 : (로컬) 개인적인 공간
 깃허브 : 공유하는 공간
 
