@@ -212,7 +212,7 @@ For more examples and ideas, visit:
  https://docs.docker.com/get-started/
 ```
 사용자의 명령이 도커 엔진에 전달 -> 내 컴퓨터에 없는 이미지를 도커허브(인터넷)에서 가져옴 ->  
-이미지를 실행 가능한 컨테이너로 변신 -> 컨테이너 안에서 나온 글자를 사용자의 터미널로 출력
+이미지를 실행 가능한 컨테이너로 변신 -> 컨테이너 안에서 나온 글자를 사용자의 터미널로 출력  
 추후 에러(Exited (1))시 로그(텍스트기록) 를 보고 원인을 찾을 수도 있음  
 ##
 4. 도커 상태 확인
@@ -221,6 +221,50 @@ For more examples and ideas, visit:
 CONTAINER ID   NAME      CPU %     MEM USAGE / LIMIT   MEM %     NET I/O   BLOCK I/O   PIDS
 ```
 도커의 현재 상태만 보여주고 종료 -> 현재 시제로 가동 중인 컨테이너가 없는 상태.
+## 3. 컨테이너 실행 실습
+1. Ubuntu 실행
+```bash
+*실행: docker run -it ubuntu bash
+Unable to find image 'ubuntu:latest' locally
+latest: Pulling from library/ubuntu
+689b91d88a0f: Pull complete 
+Digest: sha256:84e77dee7d1bc93fb029a45e3c6cb9d8aa4831ccfcc7103d36e876938d28895b
+Status: Downloaded newer image for ubuntu:latest
+```
+우분투 리눅스 운영체제 진입. 우분투 안에서 명령어를 주고받을 수 있는 통로 오픈.
+##
+2. 우분투 내부 파일 목록
+```bash
+*리눅스폴더: root@72a0cb392452:/# ls
+bin   dev  home  lib64  mnt  proc  run   srv  tmp  var
+boot  etc  lib   media  opt  root  sbin  sys  usr
+```
+`bin` / `sbin` 컴퓨터 실행시 가장 기본적인 명령어 도구    
+`etc` 시스템 각종 설정파일 모음  
+`root` 시스템 최고 관리자의 개인폴더  
+`home` 일반 사용자들의 개인폴더  
+`tmp` 임시 파일 저장 및 삭제 (연습장)
+##
+3. 메아리
+```bash
+다시 보여주기 기능: root@001b56f9fffb:/# echo meow        
+meow
+```
+야옹을 외쳤더니 야옹을 했다.
+##
+4. 컨테이너 종료 / 유지
+```bash
+유지하며 나오기 : `ctrl + p + Q`
+*유지확인: docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED          STATUS          PORTS     NAMES
+001b56f9fffb   ubuntu    "bash"    8 minutes ago    Up 8 minutes              laughing_diffie
+5f3d76d6719b   ubuntu    "bash"    15 minutes ago   Up 15 minutes             serene_cerf
+72a0cb392452   ubuntu    "bash"    16 minutes ago   Up 16 minutes             infallible_williamson
+loo_cozy9531@c5r3s7 ~ % 
+```
+```bash
+
+
 
 ##2. Dockerfile
 
