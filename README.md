@@ -29,7 +29,7 @@ Git 버전 : Git 2.x
 -**GIT 설정 / github연동**  
 
 ##
-# 수행
+# 터미널
 ## 0. 터미널 기본조작
 터미널의 역할 : 컴퓨터에게 효율적으로 내리는 명령
 ```bash
@@ -43,7 +43,7 @@ Git 버전 : Git 2.x
 `mv` : Move / 이동하기 (이름바꾸기)  
 `chmod` : Change Mode / 파일의 권한(읽기/쓰기/실행) 변경
 ```
-## 1. 터미널 조작 로그 
+## 0. 터미널 조작 로그 
 
 1. 현재위치확인
 ```bash
@@ -79,14 +79,14 @@ ls: delete_test: No such file or directory
 hello_terminal.txt 이름변경 -> renamed_file.txt 후 복사본 생성 후 뒤로가기로 practice로 이동해 작업폴더, 내부파일을 전부 삭제. 존재하지않는 경로 조회 후 텅 빈 리스트 확인.
 
 ##
-## 1. Docker
-### 설치
-##
-- **명령어**: docker --version
-- **출 력**: Docker version 28.5.2, build ecc6942
-##
-- **명령어**: docker info
-- **출 력**: Client:
+# Docker
+## 1. 도커 설치 및 기본점검
+```bash
+버전확인: docker --version
+Docker version 28.5.2, build ecc6942
+
+정보: docker info
+Client:
  Version:    28.5.2
  Context:    orbstack
  Debug Mode: false
@@ -97,6 +97,40 @@ hello_terminal.txt 이름변경 -> renamed_file.txt 후 복사본 생성 후 뒤
   compose: Docker Compose (Docker Inc.)
     Version:  v2.40.3
     Path:     /Users/ang.com/.docker/cli-plugins/docker-compose
+
+실행: docker run --name hello-test hello-world
+Unable to find image 'hello-world:latest' locally
+latest: Pulling from library/hello-world
+58dee6a49ef1: Pull complete 
+Digest: sha256:452a468a4bf985040037cb6d5392410206e47db9bf5b7278d281f94d1c2d0931
+Status: Downloaded newer image for hello-world:latest
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (arm64v8)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+```
+현재 시스템 도커 엔진 28.5.2 버전이 성공적으로 서치되어 작동 중이며 orbstack 컨텍스트를 기반으로 실행.   
+컨테이너 빌드를 위한 Buildx(v0.29.1) / Compose(v2.40.3) 준비되어있음. ang.com 컴퓨터 경로 설치.
+로컬에 없는 hello-world 이미지를 클라우드에서 자동으로 내려받아(Pull), hello-test라는 이름의 컨테이너로  
+실행하여 도커의 정상 작동을 확인.
+
 ##
 - **명령어**: docker run --name hello-test hello-world
 - **출 력**: Unable to find image 'hello-world:latest' locally
