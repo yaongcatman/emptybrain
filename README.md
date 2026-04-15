@@ -88,6 +88,19 @@ hello-world   latest    eb84fdc6f2a3   3 weeks ago      5.2kB
 ang.com@hwang-angkom-ui-MacBookPro cat-study % 
 
 ##
+
+##2. 권한변경
+ - **권한확인**: ls -l app/index.html
+ - **출 력**: -rw-r--r--  1 loo_cozy9531  loo_cozy9531  892  4 15 21:23 app/index.html
+
+ - **권한변경**:  chmod 755 app/index.html
+
+-**권한 변경 확인**: ls -l app/index.html
+-**결과**: -rwxr-xr-x  1 loo_cozy9531  loo_cozy9531  892  4 15 21:23 app/index.html
+
+
+##
+##3.dockerfile
   - **명령어**: docker ps -a
   - **출 력**: CONTAINER ID   IMAGE         COMMAND    CREATED              STATUS                          PORTS     NAMES
 52ad68bce410   hello-world   "/hello"   About a minute ago   Exited (0) About a minute ago             hello-test
