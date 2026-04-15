@@ -37,15 +37,15 @@
 ## 0. 터미널 기본조작
 터미널의 역할 : 컴퓨터에게 효율적으로 내리는 명령
 
-``pwd : rint Working Directory / 현재위치확인  
-ls : List / 현재 폴더에 있는 파일 목록  
-cd : Change Directory / 다른 폴더로 이동  
-mkdir : Make Directory / 새 폴더 만들기  
-touch : 비어있는 새 파일 만들기  
-rm : Remove / 파일이나 폴더 삭제  
-cp : Copy / 복사하기    
-mv : Move / 이동하기 (이름바꾸기)  
-chmod : Change Mode / 파일의 권한(읽기/쓰기/실행) 변경
+`pwd' : rint Working Directory / 현재위치확인  
+'ls' : List / 현재 폴더에 있는 파일 목록  
+'cd' : Change Directory / 다른 폴더로 이동  
+'mkdir' : Make Directory / 새 폴더 만들기  
+'touch' : 비어있는 새 파일 만들기  
+'rm' : Remove / 파일이나 폴더 삭제  
+'cp' : Copy / 복사하기    
+'mv' : Move / 이동하기 (이름바꾸기)  
+'chmod' : Change Mode / 파일의 권한(읽기/쓰기/실행) 변경
 
 -**현재위치확인**: pwd
 -**결과**: /Users/loo_cozy9531/cat-study
