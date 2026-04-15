@@ -38,7 +38,7 @@
 터미널의 역할 : 컴퓨터에게 효율적으로 내리는 명령
 
 `pwd` : Print Working Directory / 현재 위치 확인
-'ls' : List / 현재 폴더에 있는 파일 목록  
+ls' : List / 현재 폴더에 있는 파일 목록  
 'cd' : Change Directory / 다른 폴더로 이동  
 'mkdir' : Make Directory / 새 폴더 만들기  
 'touch' : 비어있는 새 파일 만들기  
