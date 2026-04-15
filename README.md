@@ -16,7 +16,7 @@ Git 버전 : Git 2.x
 도구 : Terminal (v-code 없이)
 ```
 
-## ㄴ. 수행체크리스트
+## ㄷ. 수행체크리스트
 
 -**터미널 기본 조작**  
 -**권한 변경 실습**  
@@ -79,7 +79,7 @@ ls: delete_test: No such file or directory
 hello_terminal.txt 이름변경 -> renamed_file.txt 후 복사본 생성 후 뒤로가기로 practice로 이동해 작업폴더, 내부파일을 전부 삭제. 존재하지않는 경로 조회 후 텅 빈 리스트 확인.
 ##
 # 권한변경
-## 1. 권환 확인 / qussrud
+## 1. 권환 확인 / 변경
 ```dash
  *권한확인: ls -l app/index.html
  -rw-r--r--  1 loo_cozy9531  loo_cozy9531  892  4 15 21:23 app/index.html
@@ -95,12 +95,14 @@ ls -l app/index.html
 ##
 # Docker
 ## 1. 도커 설치 및 기본점검
+1. 버전확인
 ```bash
 *버전확인: docker --version
 Docker version 28.5.2, build ecc6942
 ```
 현재 시스템 도커 엔진 28.5.2 버전이 성공적으로 서치되어 작동.
 ##
+2. 도커 정보
 ```bash
 *정보: docker info
 Client:
@@ -119,6 +121,7 @@ orbstack 컨텍스트를 기반으로 실행.
 컨테이너 빌드를 위한 Buildx(v0.29.1) / Compose(v2.40.3) 준비되어있음.  
 ang.com 컴퓨터 경로 설치.
 ##
+3. 도커 작동 확인
 ```bash
 *실행: docker run --name hello-test hello-world
 Unable to find image 'hello-world:latest' locally
@@ -152,7 +155,8 @@ For more examples and ideas, visit:
 실행하여 도커의 정상 작동을 확인.
 
 ##
-  ## 1. 운영 명령 실행
+  ## 2. 운영 명령 실행
+1. 이미지
 ```bash
 *이미지 다운로드/목록확인: docker images
   - **출 력**: REPOSITORY    TAG       IMAGE ID       CREATED          SIZE
@@ -171,14 +175,22 @@ ang.com@hwang-angkom-ui-MacBookPro cat-study %
 ```
 레포지토리에 총 4개의 이미지 존재 . hello-world가 가장 최신이미지 
 ##
-
-##3.dockerfile
-  - **명령어**: docker ps -a
-  - **출 력**: CONTAINER ID   IMAGE         COMMAND    CREATED              STATUS                          PORTS     NAMES
+2.  도커 작동 컨테이너 출력
+```bash
+*작동컨테이너: docker ps -a
+ CONTAINER ID   IMAGE         COMMAND    CREATED              STATUS                          PORTS     NAMES
 52ad68bce410   hello-world   "/hello"   About a minute ago   Exited (0) About a minute ago             hello-test
+```
+도커에서 어떤 컨테이너가 작동 하고 있는지 (전부) 명령 ->  
+hello-world 이미지로 hello-test라는 이름의 컨테이너를 만들고 그 안의 프로그램을 실행.  
+hello-world는 "Hello from Docker!"라는 문구만 출력하고 바로 종료되도록 설계된 프로그램.  
+Exited (0) -> 에러 없이 마무리하고 종료.
 ##
-- **명령어**: docker logs hello-test
-- **출 력**: Hello from Docker!
+3. 도커 모든 텍스트 출력 기록
+```bash
+hello-test 도커기록: docker logs hello-test
+
+Hello from Docker!
 This message shows that your installation appears to be working correctly.
 
 To generate this message, Docker took the following steps:
@@ -198,9 +210,18 @@ Share images, automate workflows, and more with a free Docker ID:
 
 For more examples and ideas, visit:
  https://docs.docker.com/get-started/
+```
+사용자의 명령이 도커 엔진에 전달 -> 내 컴퓨터에 없는 이미지를 도커허브(인터넷)에서 가져옴 ->  
+이미지를 실행 가능한 컨테이너로 변신 -> 컨테이너 안에서 나온 글자를 사용자의 터미널로 출력
+추후 에러(Exited (1))시 로그(텍스트기록) 를 보고 원인을 찾을 수도 있음  
 ##
-  - **명령어**: docker stats --no-stream
-  - **출 력**: CONTAINER ID   NAME      CPU %     MEM USAGE / LIMIT   MEM %     NET I/O   BLOCK I/O   PIDS
+4. 도커 상태 확인
+```bash
+실시간 모니터링 작업 관리: docker stats --no-stream
+CONTAINER ID   NAME      CPU %     MEM USAGE / LIMIT   MEM %     NET I/O   BLOCK I/O   PIDS
+```
+도커의 현재 상태만 보여주고 종료 -> 현재 시제로 가동 중인 컨테이너가 없는 상태.
+
 ##2. Dockerfile
 
  - **HTML**:
