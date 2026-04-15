@@ -252,7 +252,7 @@ meow
 ```
 야옹을 외쳤더니 야옹을 했다.
 ##
-4. 컨테이너 종료 / 유지
+4. 컨테이너 유지
 ```bash
 유지하며 나오기 : `ctrl + p + Q`
 *유지확인: docker ps
@@ -262,9 +262,35 @@ CONTAINER ID   IMAGE     COMMAND   CREATED          STATUS          PORTS     NA
 72a0cb392452   ubuntu    "bash"    16 minutes ago   Up 16 minutes             infallible_williamson
 loo_cozy9531@c5r3s7 ~ % 
 ```
+잠시 나왔지만 컨테이너들은 여전히 실행 유지
+##
+5. 컨테이너 `exec` 새로운 통로로 들어가서 빠져나오기
 ```bash
+*새로운 문으로 들어와서: docker exec -it laughing_diffie bash
+*원래 문으로 나가기 : root@001b56f9fffb:/# exit
+*확인 : loo_cozy9531@c5r3s7 ~ % docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED          STATUS          PORTS     NAMES
+001b56f9fffb   ubuntu    "bash"    25 minutes ago   Up 25 minutes             laughing_diffie
+5f3d76d6719b   ubuntu    "bash"    31 minutes ago   Up 31 minutes             serene_cerf
+72a0cb392452   ubuntu    "bash"    32 minutes ago   Up 32 minutes             infallible_williamson
+```
+`exec`로 laughing_diffie bash 컨테이너에서 다시 들어갔다가 나갔지만 실행 유지 중
+##
+6. 컨테이너 `attach` 다시 들어가서 빠져나오기
+```bash
+*직접 연결된 기존 문으로 들어가서: docker attach laughing_diffie
+bash: docker: command not found
+*똑같은 문으로 나가기: root@001b56f9fffb:/# exit
+* laughing_diffie 존재확인: docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED          STATUS          PORTS     NAMES
+5f3d76d6719b   ubuntu    "bash"    36 minutes ago   Up 36 minutes             serene_cerf
+72a0cb392452   ubuntu    "bash"    37 minutes ago   Up 37 minutes             infallible_williamson
 
-
+*나머지 퇴근 명령: docker stop serene_cerf infallible_williamson
+*docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+```
+`attach`으로 들어가서 빠져나왔을 때 laughing_diffie 존재 사멸 및 나머지 serene_cerf / infallible_williamson 도 도커 멈춤 명령으로 종료 -> 도커 현재상태로 유지된 컨테이너 없음 확인.
 
 ##2. Dockerfile
 
