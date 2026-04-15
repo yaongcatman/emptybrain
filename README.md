@@ -2,12 +2,22 @@
 
 # AI/SW 개발워크스테이션 
 
-## 프로젝트 개요
+## ㄱ. 프로젝트 개요
 **cli / docker / git/github 을 활용한 실행 / 배포 환경 구축**
 **컨테이너 활용 동일한 서버환경 재현**
 **포드매핑의 실행과 검증을 통한 구조적 설계에 대한 이해**
 
-## 수행체크리스트
+##
+## ㄴ. 실행환경
+**os/shell : macOS (Apple Silicon) / zsh**
+**Container Runtime : OrbStack v28.5.2**
+**Git 버전 : Git 2.x**
+**도구 : Terminal (v-code 없이
+
+##
+
+
+## ㄴ. 수행체크리스트
 
 -**터미널 기본 조작**  
 -**권한 변경 실습**  
@@ -20,6 +30,7 @@
 -**GIT 설정 / github연동**  
 
 ##
+
 ## 0. 터미널 기본조작
 -**현재위치확인**: pwd
 -**결과**: /Users/loo_cozy9531/cat-study
