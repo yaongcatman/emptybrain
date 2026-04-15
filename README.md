@@ -3,21 +3,18 @@
 # AI/SW 개발워크스테이션 
 
 ## ㄱ. 프로젝트 개요
-**cli / docker / git/github 을 활용한 실행 / 배포 환경 구축**
-**컨테이너 활용 동일한 서버환경 재현**
-**포드매핑의 실행과 검증을 통한 구조적 설계에 대한 이해**
+ㄱ. **cli / docker / git/github 을 활용한 실행 / 배포 환경 구축**  
+ㄴ. **컨테이너 활용 동일한 서버환경 재현**  
+ㄷ. **포드매핑의 실행과 검증을 통한 구조적 설계에 대한 이해**  
 
 ##
 ## ㄴ. 실행환경
 ```bash
-**os/shell : macOS (Apple Silicon) / zsh**
-**Container Runtime : OrbStack v28.5.2**
-**Git 버전 : Git 2.x**
-**도구 : Terminal (v-code 없이
+os/shell : macOS (Apple Silicon) / zsh
+Container Runtime : OrbStack v28.5.2
+Git 버전 : Git 2.x
+도구 : Terminal (v-code 없이)
 ```
-
-##
-
 
 ## ㄴ. 수행체크리스트
 
@@ -32,13 +29,10 @@
 -**GIT 설정 / github연동**  
 
 ##
-
 # 수행
-##
-
 ## 0. 터미널 기본조작
 터미널의 역할 : 컴퓨터에게 효율적으로 내리는 명령
-
+```bash
 `pwd` : Print Working Directory / 현재 위치 확인
 `ls` : List / 현재 폴더에 있는 파일 목록  
 `cd` : Change Directory / 다른 폴더로 이동  
@@ -48,29 +42,41 @@
 `cp` : Copy / 복사하기    
 `mv` : Move / 이동하기 (이름바꾸기)  
 `chmod` : Change Mode / 파일의 권한(읽기/쓰기/실행) 변경
+```
+## 1. 터미널 조작 로그 
 
-##  
--**현재위치확인**: pwd
--**결과**: /Users/loo_cozy9531/cat-study
+1. 현재위치확인
+```bash
+위치: pwd
+/Users/loo_cozy9531/cat-study
+```
 ##
--**테스트용 폴더 생성**: mkdir -p practice/test_folder
--**폴더이동**: cd practice
--**빈파일생성**: touch hello_terminal.txt
-##
--**파일목록확인**: ls -la
+2. 테스트 폴더 생성 / 이동 / 빈파일생성 - 파일목록 확인
+```bash
+테스트용 폴더 생성: mkdir -p practice/test_folder
+폴더이동: cd practice
+빈파일생성: touch hello_terminal.txt
+파일목록확인(숨김파일포함): ls -la
 total 0
 drwxr-xr-x  4 loo_cozy9531  loo_cozy9531  128  4 15 22:05 .
 drwxr-xr-x  5 loo_cozy9531  loo_cozy9531  160  4 15 22:03 ..
 -rw-r--r--  1 loo_cozy9531  loo_cozy9531    0  4 15 22:05 hello_terminal.txt
 drwxr-xr-x  2 loo_cozy9531  loo_cozy9531   64  4 15 22:03 test_folder
+```
+테스트용 폴더 생성 `mkdir -p` 옵션으로  (폴더가 없는경우) 현재 위치에 practice 폴더를 만든 후 그 안에 test_folder를 생성, `touch` 로 빈파일 생성, `li -la`로 숨김파일포함 loo_cozy9531 권한자의 4개 리스트 발견.  
+`.`현재폴더(practice) / `..`상위폴더 / `hello_terminal.txt` 일반 빈 파일 / `test_folder` 디렉토리  
 ##
--**파일이름 변경/이동**: mv hello_terminal.txt renamed_file.txt
--**파일복사**: cp renamed_file.txt copy_file.txt
--**파일 및 폴더 삭제: rm copy_file.txt
+3. 파일이름 변경/이동/복사
+```bash
+파일이름 변경: mv hello_terminal.txt renamed_file.txt
+변경한파일복사: cp renamed_file.txt copy_file.txt
+파일 및 폴더 삭제: rm copy_file.txt
 cd ..
 rm -rf practice
--**파일삭제확인**: ls delete_test
--**결과**:ls: delete_test: No such file or directory
+삭제확인: ls delete_test
+ls: delete_test: No such file or directory
+```
+hello_terminal.txt 이름변경 -> renamed_file.txt 후 복사본 생성 후 뒤로가기로 practice로 이동해 작업폴더, 내부파일을 전부 삭제. 존재하지않는 경로 조회 후 텅 빈 리스트 확인.
 
 ##
 ## 1. Docker
