@@ -23,6 +23,30 @@
 ##
 
 
+## 0. 터미널 기본조작
+-**현재위치확인**: pwd
+-**결과**: /Users/loo_cozy9531/cat-study
+##
+-**테스트용 폴더 생성**: mkdir -p practice/test_folder
+-**폴더이동**: cd practice
+-**빈파일생성**: touch hello_terminal.txt
+##
+-**파일목록확인**: ls -la
+total 0
+drwxr-xr-x  4 loo_cozy9531  loo_cozy9531  128  4 15 22:05 .
+drwxr-xr-x  5 loo_cozy9531  loo_cozy9531  160  4 15 22:03 ..
+-rw-r--r--  1 loo_cozy9531  loo_cozy9531    0  4 15 22:05 hello_terminal.txt
+drwxr-xr-x  2 loo_cozy9531  loo_cozy9531   64  4 15 22:03 test_folder
+##
+-**파일이름 변경/이동**: mv hello_terminal.txt renamed_file.txt
+-**파일복사**: cp renamed_file.txt copy_file.txt
+-**파일 및 폴더 삭제: rm copy_file.txt
+cd ..
+rm -rf practice
+-**파일삭제확인**: ls delete_test
+-**결과**:ls: delete_test: No such file or directory
+
+##
 ## 1. Docker
 ### 설치
 ##
