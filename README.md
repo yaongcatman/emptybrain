@@ -291,9 +291,12 @@ CONTAINER ID   IMAGE     COMMAND   CREATED          STATUS          PORTS     NA
 CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 ```
 `attach`으로 들어가서 빠져나왔을 때 laughing_diffie 존재 사멸 및 나머지 serene_cerf / infallible_williamson 도 도커 멈춤 명령으로 종료 -> 도커 현재상태로 유지된 컨테이너 없음 확인.
-
-##2. Dockerfile
-
+##
+# Dockerfile 기반 커스텀 이미지 제작
+## 1. 웹 서버 베이스 이미지 활용
+html파일을 웹 화면으로 출력하기 위해서는 웹 서버 프로그램이 필요하며  
+가볍고 대중적인 `nginx:alpine`  이미지 베이스 선택
+```bash
  - **HTML**:
 cat <<EOF > app/index.html
 <!DOCTYPE html>
@@ -314,11 +317,20 @@ cat <<EOF > app/index.html
 </body>
 </html>
 EOF
+```
+### [1] 기존 베이스 이미지 : `nginx:alpine` 
+html파일을 웹 화면으로 출력하기 위해서는 웹 서버 프로그램이 필요하며  
+가볍고 대중적인 `nginx:alpine`  이미지 베이스 선택  
+### [2] 커스텀포인트
+핑크색 배경 : 그 때 시점 기준 화사한 색상으로 어두운 나를 밝히는게 매우 필수.  
+특수 문자와 문구 :
+고양이아저씨라는 내성적이며 독특하고 음침하지만 귀여운 개발자 이미지에 적합함.  
+추후 대머리 아저씨 얼굴 이모티콘을 추가하고 싶은 마음입니다.   
 
 ##
-### 실행
- - **명령어**: docker build -t angkom-cat:2.0 .
- - **출 력**:
+## 2. 빌드 / 실행
+```bash
+건축 : docker build -t angkom-cat:2.0 .
  [+] Building 1.1s (7/7) FINISHED                                docker:orbstack
  => [internal] load build definition from Dockerfile                       0.0s
  => => transferring dockerfile: 119B                                       0.0s
