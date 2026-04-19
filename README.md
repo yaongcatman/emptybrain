@@ -42,6 +42,7 @@ Git 버전 : Git 2.x
 `cp` : Copy / 복사하기    
 `mv` : Move / 이동하기 (이름바꾸기)  
 `chmod` : Change Mode / 파일의 권한(읽기/쓰기/실행) 변경
+`log` : 지금까지 일어난 시스템 기록
 'cat` : 파일안에 무엇이 있는지 터미널로 바로 확인
 `directory` : 폴더 (파일 담는 바구니)
 `repository` : 내 컴퓨터안에 존재하는 저장소
@@ -82,7 +83,27 @@ rm -rf practice
 삭제확인: ls delete_test
 ls: delete_test: No such file or directory
 ```
-hello_terminal.txt 이름변경 -> renamed_file.txt 후 복사본 생성 후 뒤로가기로 practice로 이동해 작업폴더, 내부파일을 전부 삭제. 존재하지않는 경로 조회 후 텅 빈 리스트 확인.
+*파일이름 변경: mv hello_terminal.txt renamed_file.txt
+# mv(Move)는 파일을 다른 위치로 이동시키거나 혹은 이름변경
+
+*변경한파일복사: cp renamed_file.txt copy_file.txt
+# 주석: cp(Copy)는 원본 복사.
+# 설정 파일을 수정하기 전, 원본 백업(Backup)을 만들 때 필수적으로 사용
+
+*파일 및 폴더 삭제: rm copy_file.txt
+# 주석: rm(Remove)은 파일을 삭제합니다. 휴지통으로 가는 것이 아니라 시스템에서 즉시 제거되므로 주의가 필요합니다.
+
+cd ..
+rm -rf practice
+# 주석: 'rm -rf'는 하위 디렉토리와 파일을 묻지도 따지지도 않고 강제로 전부 삭제하는 강력한 명령어입니다.
+# -r(recursive): 폴더 안의 내용까지 모두 포함
+# -f(force): 삭제 확인 메시지를 띄우지 않고 강제 집행
+# 프로젝트 초기화나 불필요한 빌드 아티팩트를 정리할 때 사용합니다.
+
+삭제확인: ls delete_test
+ls: delete_test: No such file or directory
+# 주석: 존재하지 않는 파일이나 폴더를 조회했을 때 나오는 에러 메시지입니다. 
+# 앞선 'rm -rf' 명령어가 성공적으로 수행되어 해당 경로가 완전히 사라졌음을 증명하는 최종 확인 단계입니다.
 
 ##
 
