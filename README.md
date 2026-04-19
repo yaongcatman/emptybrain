@@ -44,7 +44,7 @@ Git 버전 : Git 2.x
 `chmod` : Change Mode / 파일의 권한(읽기/쓰기/실행) 변경
 'cat` : 파일안에 무엇이 있는지 터미널로 바로 확인
 `directory` : 폴더 (파일 담는 바구니)
-'repository` : 내 컴퓨터안에 존재하는 저장소
+`repository` : 내 컴퓨터안에 존재하는 저장소
 ```
 ## 0. 터미널 조작 로그 
 
