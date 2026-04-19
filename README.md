@@ -187,8 +187,8 @@ For more examples and ideas, visit:
  https://docs.docker.com/get-started/
 ```
 *실행: docker run --name hello-test hello-world
-#'이미지'는 레시피, '컨테이너'는 레시피를 사용해 요리완성,,,,  
-#이미지와 이미지를 실제 재생하는 동영상 관계....  
+#'이미지'는 레시피, '컨테이너'는 레시피를 사용해 요리완성,,,,   
+#이미지와 이미지를 실제 재생하는 동영상 관계....   
 #실행할 컨테이너에 `--name hello-test` 이름 부여 -> `hello-world` 컨테이너를 만드는데 사용할 이미지 (재료)
 
 ##
