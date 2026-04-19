@@ -45,7 +45,8 @@ Git 버전 : Git 2.x
 `log` : 지금까지 일어난 시스템 기록
 'cat` : 파일안에 무엇이 있는지 터미널로 바로 확인
 `directory` : 폴더 (파일 담는 바구니)
-`repository` : 내 컴퓨터안에 존재하는 저장소
+`repository` : 내 컴퓨터안에 존재하는 모든 이력을 담고 있는 고급관리 저장소.
+git 숨겨진 관리 데이터베이스. 과거상태로 되돌리거나 다른 개발자와 코드를 안전하게 공유
 ```
 ## 0. 터미널 조작 로그 
 
@@ -84,26 +85,26 @@ rm -rf practice
 ls: delete_test: No such file or directory
 ```
 *파일이름 변경: mv hello_terminal.txt renamed_file.txt
-# mv(Move)는 파일을 다른 위치로 이동시키거나 혹은 이름변경
+#mv(Move)는 파일을 다른 위치로 이동시키거나 혹은 이름변경
 
 *변경한파일복사: cp renamed_file.txt copy_file.txt
-# 주석: cp(Copy)는 원본 복사.
-# 설정 파일을 수정하기 전, 원본 백업(Backup)을 만들 때 필수적으로 사용
+주석: cp(Copy)는 원본 복사.
+#설정 파일을 수정하기 전, 원본 백업(Backup)을 만들 때 필수적으로 사용
 
 *파일 및 폴더 삭제: rm copy_file.txt
-# 주석: rm(Remove)은 파일을 삭제합니다. 휴지통으로 가는 것이 아니라 시스템에서 즉시 제거되므로 주의가 필요합니다.
+#rm(Remove)은 파일을 삭제합니다. 휴지통으로 가는 것이 아니라 시스템에서 즉시 제거되므로 주의가 필요.
 
 cd ..
 rm -rf practice
-# 주석: 'rm -rf'는 하위 디렉토리와 파일을 묻지도 따지지도 않고 강제로 전부 삭제하는 강력한 명령어입니다.
-# -r(recursive): 폴더 안의 내용까지 모두 포함
-# -f(force): 삭제 확인 메시지를 띄우지 않고 강제 집행
-# 프로젝트 초기화나 불필요한 빌드 아티팩트를 정리할 때 사용합니다.
+#'rm -rf'는 하위 디렉토리와 파일을  강제로 전부 삭제하는 강력한 명령어
+#-r(recursive): 폴더 안의 내용까지 모두 포함
+#-f(force): 삭제 확인 메시지를 띄우지 않고 강제 집행
+#프로젝트 초기화나 불필요한 빌드 아티팩트를 정리할 때 사용
 
 삭제확인: ls delete_test
 ls: delete_test: No such file or directory
-# 주석: 존재하지 않는 파일이나 폴더를 조회했을 때 나오는 에러 메시지입니다. 
-# 앞선 'rm -rf' 명령어가 성공적으로 수행되어 해당 경로가 완전히 사라졌음을 증명하는 최종 확인 단계입니다.
+#존재하지 않는 파일이나 폴더를 조회했을 때 나오는 에러 메시지입니다. 
+#앞선 'rm -rf' 명령어가 성공적으로 수행되어 해당 경로가 완전히 사라졌음을 증명하는 최종 확인 단계
 
 ##
 
@@ -184,9 +185,9 @@ For more examples and ideas, visit:
  https://docs.docker.com/get-started/
 ```
 *실행: docker run --name hello-test hello-world
-#  '이미지'는 레시피, '컨테이너'는 레시피를 사용해 요리완성,,,,
-#   이미지와 이미지를 실제 재생하는 동영상 관계....
-#   실행할 컨테이너에 `--name hello-test` 이름 부여 -> `hello-world` 컨테이너를 만드는데 사용할 이미지 (재료)
+#'이미지'는 레시피, '컨테이너'는 레시피를 사용해 요리완성,,,,
+#이미지와 이미지를 실제 재생하는 동영상 관계....
+#실행할 컨테이너에 `--name hello-test` 이름 부여 -> `hello-world` 컨테이너를 만드는데 사용할 이미지 (재료)
 
 ##
 
@@ -208,7 +209,7 @@ nginx         alpine    cb3fe4a86f76   7 days ago       61.6MB
 hello-world   latest    eb84fdc6f2a3   3 weeks ago      5.2kB
 ang.com@hwang-angkom-ui-MacBookPro cat-study % 
 ```
-레포지토리에 총 4개의 이미지 존재 . hello-world가 가장 최신이미지 
+저장소에 총 4개의 이미지 존재 . hello-world가 가장 최신이미지 
 
 ##
 
