@@ -185,8 +185,8 @@ For more examples and ideas, visit:
  https://docs.docker.com/get-started/
 ```
 *실행: docker run --name hello-test hello-world
-#'이미지'는 레시피, '컨테이너'는 레시피를 사용해 요리완성,,,,
-#이미지와 이미지를 실제 재생하는 동영상 관계....
+#'이미지'는 레시피, '컨테이너'는 레시피를 사용해 요리완성,,,,  
+#이미지와 이미지를 실제 재생하는 동영상 관계....  
 #실행할 컨테이너에 `--name hello-test` 이름 부여 -> `hello-world` 컨테이너를 만드는데 사용할 이미지 (재료)
 
 ##
@@ -385,8 +385,9 @@ html파일을 웹 화면으로 출력하기 위해서는 웹 서버 프로그램
  => => writing image sha256:469aa3b1024f47c8971c4d77485905728878a882d37af  0.0s
  => => naming to docker.io/library/angkom-cat:2.0                          0.0s
 ```
-*건축 : docker build -t angkom-cat:2.0 .
-# 마지막의 '.'은 현재 디렉토리에 있는 'Dockerfile'을 레시피로 사용하겠다는 뜻 (상대경로 활용)
+*건축 : docker build -t angkom-cat:2.0 .  
+#마지막의 '.'은 현재 디렉토리에 있는 'Dockerfile'을 레시피로 사용하겠다는 뜻 (상대경로 활용)  
+#`-t` : tag 이름표 -> :2.0
 
 ##
 2. 실행 / 확인
