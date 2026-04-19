@@ -42,6 +42,9 @@ Git 버전 : Git 2.x
 `cp` : Copy / 복사하기    
 `mv` : Move / 이동하기 (이름바꾸기)  
 `chmod` : Change Mode / 파일의 권한(읽기/쓰기/실행) 변경
+'cat` : 파일안에 무엇이 있는지 터미널로 바로 확인
+'directory` : 폴더 (파일 담는 바구니)
+'repository` : 내 컴퓨터안에 존재하는 저장소
 ```
 ## 0. 터미널 조작 로그 
 
@@ -63,8 +66,11 @@ drwxr-xr-x  5 loo_cozy9531  loo_cozy9531  160  4 15 22:03 ..
 -rw-r--r--  1 loo_cozy9531  loo_cozy9531    0  4 15 22:05 hello_terminal.txt
 drwxr-xr-x  2 loo_cozy9531  loo_cozy9531   64  4 15 22:03 test_folder
 ```
+-p 옵션은 하위 디렉토리까지 한 번에 생성 (부모 폴더가 없어도 오류 방지)  
+'l'은 상세 정보(권한, 소유자), 'a'는 숨김 파일(.)까지 모두 출력 
+`.`현재폴더(practice) / `..`상위폴더 / `hello_terminal.txt` 일반 빈 파일 / `test_folder` 디렉토리 
+
 테스트용 폴더 생성 `mkdir -p` 옵션으로  (폴더가 없는경우) 현재 위치에 practice 폴더를 만든 후 그 안에 test_folder를 생성, `touch` 로 빈파일 생성, `li -la`로 숨김파일포함 loo_cozy9531 권한자의 4개 리스트 발견.  
-`.`현재폴더(practice) / `..`상위폴더 / `hello_terminal.txt` 일반 빈 파일 / `test_folder` 디렉토리  
 ##
 3. 파일이름 변경/이동/복사
 ```bash
@@ -77,7 +83,9 @@ rm -rf practice
 ls: delete_test: No such file or directory
 ```
 hello_terminal.txt 이름변경 -> renamed_file.txt 후 복사본 생성 후 뒤로가기로 practice로 이동해 작업폴더, 내부파일을 전부 삭제. 존재하지않는 경로 조회 후 텅 빈 리스트 확인.
+
 ##
+
 # 권한변경
 ## 1. 권환 확인 / 변경
 ```dash
@@ -90,9 +98,12 @@ ls -l app/index.html
 *결과: -rwxr-xr-x  1 loo_cozy9531  loo_cozy9531  892  4 15 21:23 app/index.html
 ```
 소유자 / 그룹 / 나머지 -> 읽기 / 쓰기만 가능한 일반 파일    
-변경후  chmod 755 (4+2+1)(4+1)(4+1)  
+변경후  chmod 755 (4+2+1)(4+1)(4+1)  이진법
 소유자 / 그룹 / 나무지 -> 소유자는 읽기/쓰기/실행 가능 , 그룹 및 나머지는 읽기/실행만 가능 수정 불가능.
+웹 서버의 소스 코드가 임의로 변조되는 것을 방지하는 보안 설정
+
 ##
+
 # Docker
 ## 1. 도커 설치 및 기본점검
 1. 버전확인
@@ -151,10 +162,13 @@ Share images, automate workflows, and more with a free Docker ID:
 For more examples and ideas, visit:
  https://docs.docker.com/get-started/
 ```
-로컬에 없는 hello-world 이미지를 클라우드에서 자동으로 내려받아(Pull), hello-test라는 이름의 컨테이너로  
-실행하여 도커의 정상 작동을 확인.
+*실행: docker run --name hello-test hello-world
+#  '이미지'는 레시피, '컨테이너'는 레시피를 사용해 요리완성,,,,
+#   이미지와 이미지를 실제 재생하는 동영상 관계....
+#   실행할 컨테이너에 `--name hello-test` 이름 부여 -> `hello-world` 컨테이너를 만드는데 사용할 이미지 (재료)
 
 ##
+
   ## 2. 운영 명령 실행
 1. 이미지
 ```bash
@@ -174,7 +188,9 @@ hello-world   latest    eb84fdc6f2a3   3 weeks ago      5.2kB
 ang.com@hwang-angkom-ui-MacBookPro cat-study % 
 ```
 레포지토리에 총 4개의 이미지 존재 . hello-world가 가장 최신이미지 
+
 ##
+
 2.  도커 작동 컨테이너 출력
 ```bash
 *작동컨테이너: docker ps -a
@@ -347,8 +363,9 @@ html파일을 웹 화면으로 출력하기 위해서는 웹 서버 프로그램
  => => writing image sha256:469aa3b1024f47c8971c4d77485905728878a882d37af  0.0s
  => => naming to docker.io/library/angkom-cat:2.0                          0.0s
 ```
-angkom-cat:2.0 커스텀 이미지 생성 완료.  
-캐시기능을 사용해 1.1초로 건축 완료.
+*건축 : docker build -t angkom-cat:2.0 .
+# 마지막의 '.'은 현재 디렉토리에 있는 'Dockerfile'을 레시피로 사용하겠다는 뜻 (상대경로 활용)
+
 ##
 2. 실행 / 확인
 ```bash
