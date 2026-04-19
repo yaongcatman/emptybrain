@@ -152,8 +152,10 @@ Client:
 ```
 orbstack 컨텍스트를 기반으로 실행.   
 컨테이너 빌드를 위한 Buildx(v0.29.1) / Compose(v2.40.3) 준비되어있음.  
-ang.com 컴퓨터 경로 설치.
-##
+ang.com 컴퓨터 경로 설치.  
+
+##  
+
 3. 도커 작동 확인
 ```bash
 *실행: docker run --name hello-test hello-world
@@ -258,7 +260,11 @@ For more examples and ideas, visit:
 실시간 모니터링 작업 관리: docker stats --no-stream
 CONTAINER ID   NAME      CPU %     MEM USAGE / LIMIT   MEM %     NET I/O   BLOCK I/O   PIDS
 ```
-도커의 현재 상태만 보여주고 종료 -> 현재 시제로 가동 중인 컨테이너가 없는 상태.
+#`docker stat` :  작업관리자
+#컨테이너의 CPU, 메모리, 네트워크 점유율을 실시간 모니터링.
+#--no-stream : 실시간 갱신을 멈추고 현재 시점의 자원 사용량 성적표를 한 번만 출력(기록용).
+도커의 현재 상태만 보여주고 종료 -> 현재 시제로 가동 중인 컨테이너가 없는 상태.  
+
 ## 3. 컨테이너 실행 실습
 1. Ubuntu 실행
 ```bash
@@ -269,7 +275,11 @@ latest: Pulling from library/ubuntu
 Digest: sha256:84e77dee7d1bc93fb029a45e3c6cb9d8aa4831ccfcc7103d36e876938d28895b
 Status: Downloaded newer image for ubuntu:latest
 ```
-우분투 리눅스 운영체제 진입. 우분투 안에서 명령어를 주고받을 수 있는 통로 오픈.
+#`ubuntu` 전 세계 서버 표준인 '우분투(OS)' 환경 -> 컨테이너 실행  
+#bash(명령어 해석기)'를 통해 내가 직접 시스템을 조작할 수 있도록 연결  
+#실제 서버와 동일한 환경에서 미리 실습해보고 검증하기 위해 사용합니다.  
+#내 키보드 입력(-i) 인풋과 컨테이너 화면(-t)아웃풋을 연결.  
+
 ##
 2. 우분투 내부 파일 목록
 ```bash
@@ -312,7 +322,11 @@ CONTAINER ID   IMAGE     COMMAND   CREATED          STATUS          PORTS     NA
 5f3d76d6719b   ubuntu    "bash"    31 minutes ago   Up 31 minutes             serene_cerf
 72a0cb392452   ubuntu    "bash"    32 minutes ago   Up 32 minutes             infallible_williamson
 ```
-`exec`로 laughing_diffie bash 컨테이너에서 다시 들어갔다가 나갔지만 실행 유지 중
+#`exec`: 새로운 뒷문 개방
+#이미 가동 중인 컨테이너에 별도의 프로세스(옆문)를 추가로 실행하여 진입.  
+#응용: exit로 빠져나와도 메인 프로세스에 영향을 주지 않아 서버 운영 중 내부 점검 시 필수.  
+`exec`로 laughing_diffie bash 컨테이너에서 다시 들어갔다가 나갔지만 실행 유지 중  
+
 ##
 6. 컨테이너 `attach` 다시 들어가서 빠져나오기
 ```bash
@@ -328,8 +342,13 @@ CONTAINER ID   IMAGE     COMMAND   CREATED          STATUS          PORTS     NA
 *docker ps
 CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 ```
-`attach`으로 들어가서 빠져나왔을 때 laughing_diffie 존재 사멸 및 나머지 serene_cerf / infallible_williamson 도 도커 멈춤 명령으로 종료 -> 도커 현재상태로 유지된 컨테이너 없음 확인.
-##
+#`attac` : 진행 중인 생방송 접속
+#실행 중인 컨테이너의 메인 프로세스(정문) 화면에 접속함.
+#주의: 접속 중 exit 시 컨테이너의 메인 프로세스가 종료되어 컨테이너 전체가 중지됨.  
+`attach`으로 들어가서 빠져나왔을 때 laughing_diffie 존재 사멸  
+
+##  
+
 # Dockerfile 기반 커스텀 이미지 제작
 ## 1. 웹 서버 베이스 이미지 활용
 html파일을 웹 화면으로 출력하기 위해서는 웹 서버 프로그램이 필요하며  
@@ -387,7 +406,8 @@ html파일을 웹 화면으로 출력하기 위해서는 웹 서버 프로그램
 ```
 *건축 : docker build -t angkom-cat:2.0 .  
 #마지막의 '.'은 현재 디렉토리에 있는 'Dockerfile'을 레시피로 사용하겠다는 뜻 (상대경로 활용)  
-#`-t` : tag 이름표 -> :2.0
+#`-t` : tag 이름표 -> :2.0  
+버전 관리를 업데이트될 때마다 :1.0, :2.0 처럼 태그를 지정하여 언제든 특정 버전으로 롤백하거나 배포할 수 있는 체계.
 
 ##
 2. 실행 / 확인
@@ -475,8 +495,14 @@ curl http://localhost:8081 | grep "감사함미다"
 100   941  100   941    0     0  37709      0 --:--:-- --:--:-- --:--:-- 39208
             "원래 코딩 시작하면 성격이 나빠지나요? 그래도 감사함미다..., <span style="color: #ff1493; font-weight: bold; font-size: 30px;">야옹!</span>"
 ```
-터미널에서 수정할 내용 탐색 후 백업 파일 없이 바로 수정 및 변경 멘트로 대체  
--> 터미널에서 웹사이트에 접속해 즉각적으로 데이터를 가져와 이미지 빌드 없이 파일 수정 후 멘트 변경
+`sed -i` 는 터미널에서 파일을 열지 않고도 내용을 즉석에서 수정할 때 사용하는 명령어  
+`sed` Stream EDitor 텍스트 편집  
+`-i (in-place)`: 원본 파일 직접 수정  
+s/찾을말/바꿀말/g':  
+s: Substitute (교체)  
+/ / /: 구분자  
+g: Global (줄 전체에서 해당되는 모든 단어를 다 바꿔라)  
+
 ##
 3. 결과: http://localhost:8081
 <img width="876" height="526" alt="스크린샷 2026-04-15 오전 3 33 24" src="https://github.com/user-attachments/assets/08605886-771a-4895-8f2c-18774ee305dd" />
