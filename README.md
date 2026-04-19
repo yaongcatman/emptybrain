@@ -68,7 +68,9 @@ drwxr-xr-x  5 loo_cozy9531  loo_cozy9531  160  4 15 22:03 ..
 -rw-r--r--  1 loo_cozy9531  loo_cozy9531    0  4 15 22:05 hello_terminal.txt
 drwxr-xr-x  2 loo_cozy9531  loo_cozy9531   64  4 15 22:03 test_folder
 ```
--p 옵션은 하위 디렉토리까지 한 번에 생성 (부모 폴더가 없어도 오류 방지)  
+`-p` : 하위 디렉토리까지 한 번에 생성 (부모 폴더가 없어도 오류 방지)  
+상위 폴더(practice)가 존재하지 않을 경우 자동으로 생성 / 이미 폴더가 존재하는 경우에도 에러를 발생시키지 않고 하위 경로를 생성합  
+`mkdir -p a/b/c/d/e/f`  
 'l'은 상세 정보(권한, 소유자), 'a'는 숨김 파일(.)까지 모두 출력 
 `.`현재폴더(practice) / `..`상위폴더 / `hello_terminal.txt` 일반 빈 파일 / `test_folder` 디렉토리 
 
@@ -84,15 +86,14 @@ rm -rf practice
 삭제확인: ls delete_test
 ls: delete_test: No such file or directory
 ```
-*파일이름 변경: mv hello_terminal.txt renamed_file.txt
-#mv(Move)는 파일을 다른 위치로 이동시키거나 혹은 이름변경
+*파일이름 변경: mv hello_terminal.txt renamed_file.txt  
+#`mv` 다른 위치로 이동 혹은 이름변경  
 
-*변경한파일복사: cp renamed_file.txt copy_file.txt
-주석: cp(Copy)는 원본 복사.
-#설정 파일을 수정하기 전, 원본 백업(Backup)을 만들 때 필수적으로 사용
+*변경한파일복사: cp renamed_file.txt copy_file.txt    
+`cp`는 원본 복사.  
+#설정 파일을 수정하기 전, 원본 백업(Backup)을 만들 때 필수적으로 사용  
 
-*파일 및 폴더 삭제: rm copy_file.txt
-#rm(Remove)은 파일을 삭제합니다. 휴지통으로 가는 것이 아니라 시스템에서 즉시 제거되므로 주의가 필요.
+*파일 및 폴더 삭제: rm copy_file.txt  
 
 cd ..
 rm -rf practice
@@ -260,11 +261,11 @@ For more examples and ideas, visit:
 실시간 모니터링 작업 관리: docker stats --no-stream
 CONTAINER ID   NAME      CPU %     MEM USAGE / LIMIT   MEM %     NET I/O   BLOCK I/O   PIDS
 ```
-#`docker stat` :  작업관리자
-#컨테이너의 CPU, 메모리, 네트워크 점유율을 실시간 모니터링.
-#--no-stream : 실시간 갱신을 멈추고 현재 시점의 자원 사용량 성적표를 한 번만 출력(기록용).
-도커의 현재 상태만 보여주고 종료 -> 현재 시제로 가동 중인 컨테이너가 없는 상태.  
-
+#`docker stat` :  작업관리자  
+#컨테이너의 CPU, 메모리, 네트워크 점유율을 실시간 모니터링.  
+#--no-stream : 실시간 갱신을 멈추고 현재 시점의 자원 사용량 성적표를 한 번만 출력(기록용).  
+도커의 현재 상태만 보여주고 종료 -> 현재 시제로 가동 중인 컨테이너가 없는 상태.    
+ 
 ## 3. 컨테이너 실행 실습
 1. Ubuntu 실행
 ```bash
@@ -342,10 +343,10 @@ CONTAINER ID   IMAGE     COMMAND   CREATED          STATUS          PORTS     NA
 *docker ps
 CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 ```
-#`attac` : 진행 중인 생방송 접속
-#실행 중인 컨테이너의 메인 프로세스(정문) 화면에 접속함.
-#주의: 접속 중 exit 시 컨테이너의 메인 프로세스가 종료되어 컨테이너 전체가 중지됨.  
-`attach`으로 들어가서 빠져나왔을 때 laughing_diffie 존재 사멸  
+#`attac` : 진행 접속  
+#실행 중인 컨테이너의 메인 프로세스(정문) 화면에 접속함.  
+#주의: 접속 중 exit 시 컨테이너의 메인 프로세스가 종료되어 컨테이너 전체가 중지됨.   
+`attach`으로 들어가서 빠져나왔을 때 laughing_diffie 사멸.
 
 ##  
 
